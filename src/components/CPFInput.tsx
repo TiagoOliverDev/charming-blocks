@@ -1,0 +1,36 @@
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+
+interface CPFInputProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const CPFInput = ({ value, onChange }: CPFInputProps) => {
+  const formatCPF = (input: string) => {
+    const numbers = input.replace(/\D/g, "");
+    if (numbers.length <= 3) return numbers;
+    if (numbers.length <= 6) return `${numbers.slice(0, 3)}.${numbers.slice(3)}`;
+    if (numbers.length <= 9)
+      return `${numbers.slice(0, 3)}.${numbers.slice(3, 6)}.${numbers.slice(6)}`;
+    return `${numbers.slice(0, 3)}.${numbers.slice(3, 6)}.${numbers.slice(6, 9)}-${numbers.slice(9, 11)}`;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatCPF(e.target.value);
+    onChange(formatted);
+  };
+
+  return (
+    <Input
+      type="text"
+      value={value}
+      onChange={handleChange}
+      placeholder="000.000.000-00"
+      maxLength={14}
+      className="input-field"
+    />
+  );
+};
+
+export default CPFInput;
