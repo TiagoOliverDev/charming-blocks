@@ -1,24 +1,24 @@
 import JuridicalForm from "@/components/JuridicalForm";
 import { motion } from "framer-motion";
+import legalBackground from "@/assets/legal-background.jpg";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 md:p-8">
-      {/* Background decoration */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ duration: 1 }}
-          className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"
+    <div className="min-h-screen flex items-center justify-center p-4 md:p-8 relative">
+      {/* Background image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+        className="fixed inset-0 z-0"
+      >
+        <img
+          src={legalBackground}
+          alt=""
+          className="w-full h-full object-cover"
         />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"
-        />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/80 backdrop-blur-[2px]" />
+      </motion.div>
 
       {/* Main content */}
       <div className="relative z-10 w-full">
